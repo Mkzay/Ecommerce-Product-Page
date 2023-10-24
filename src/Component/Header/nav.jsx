@@ -12,19 +12,19 @@ export default function Nav() {
   };
 
   return (
-    <header className="flex items-center justify-between w-full py-5 px-4 md:px-14 md:border-b md:w-11/12">
-      <div className="flex justify-center items-center gap-3 md:flex md:flex-row md:gap-16">
+    <header className="flex items-center justify-between fixed top-0 bg-White w-full py-5 px-4 lg:px-14 lg:border-b lg:w-11/12 z-10">
+      <div className="flex justify-center items-center gap-3 lg:flex lg:flex-row lg:gap-16">
         <button
           onClick={openMenu}
-          className="text-xl text-Very-dark-blue md:hidden"
+          className="text-xl text-Very-dark-blue lg:hidden"
         >
           <FontAwesomeIcon icon={faBars} />
         </button>
         <img src="./images/logo.svg" />
         <SideBar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
       </div>
-      <div className="flex gap-5 md:gap-8">
-        <button className="text-xl text-Black md:text-Dark-grayish-blue md:hover:text-Black">
+      <div className="flex gap-5 lg:gap-8">
+        <button className="text-xl text-Black lg:text-Dark-grayish-blue lg:hover:text-Black">
           <FontAwesomeIcon icon={faCartShopping} />
         </button>
         <button className="bg-red-700 w-7 h-7 rounded-full">

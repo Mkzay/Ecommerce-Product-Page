@@ -1,29 +1,60 @@
-export default function Hero() {
+/* eslint-disable react/prop-types */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+
+export default function Hero({ images }) {
+  const imageS = [
+    "./images/display/image-product-1.jpg",
+    "./images/display/image-product-2.jpg",
+    "./images/display/image-product-3.jpg",
+    "./images/display/image-product-4.jpg",
+  ];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    const nextIndex = (currentImageIndex + 1) % imageS.length;
+    setCurrentImageIndex(nextIndex);
+  };
+
+  const previousImage = () => {
+    const previousIndex =
+      (currentImageIndex - 1 + imageS.length) % imageS.length;
+    setCurrentImageIndex(previousIndex);
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center basis-2/5 gap-7 md:pb-10">
-      <div>
+    <div className="flex flex-col items-center justify-center basis-2/5 gap-7 lg:pb-10">
+      <div className="relative">
+        <button
+          onClick={previousImage}
+          className="absolute bottom-36 left-1 w-12 h-12 rounded-full block text-Black bg-White md:bottom-80 lg:hidden"
+        >
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </button>
         <img
-          className="md:rounded-xl md:h-[500px]"
-          src="./images/image-product-1.jpg"
+          className="md:rounded-xl md:h-[800px] lg:h-[500px]"
+          src={imageS[currentImageIndex]}
         />
+        <button
+          onClick={nextImage}
+          className="absolute bottom-36 right-1 w-12 h-12 rounded-full block text-Black bg-White md:bottom-80 lg:hidden"
+        >
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
       </div>
-      <div className="items-center justify-center gap-7 hidden md:flex">
-        <img
-          className="rounded-xl w-[100px]"
-          src="./images/image-product-1-thumbnail.jpg"
-        />
-        <img
-          className="rounded-xl w-[100px]"
-          src="./images/image-product-2-thumbnail.jpg"
-        />
-        <img
-          className="rounded-xl w-[100px]"
-          src="./images/image-product-3-thumbnail.jpg"
-        />
-        <img
-          className="rounded-xl w-[100px]"
-          src="./images/image-product-4-thumbnail.jpg"
-        />
+      <div className="items-center justify-center gap-7 hidden lg:flex">
+        {images.map((image, index) => (
+          <img
+            key={index}
+            className="rounded-xl w-[100px]"
+            src={image}
+            alt={`Thumbnail ${index}`}
+          />
+        ))}
       </div>
     </div>
   );
