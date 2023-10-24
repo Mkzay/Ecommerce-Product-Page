@@ -1,7 +1,5 @@
 import Hero from "./hero-section";
 import Text from "./text-section";
-import Cart from "../cart";
-import { useState } from "react";
 
 export default function Body() {
   const images = [
@@ -11,16 +9,10 @@ export default function Body() {
     "./images/thumbnail/image-product-4-thumbnail.jpg",
   ];
 
-  const [showCart, setShowCart] = useState(false);
-
-  const handleShowCart = () => {
-    setShowCart(true);
-  };
-
   return (
-    <div className="flex items-center justify-center flex-col pt-8 lg:gap-10 lg:flex-row lg:pt-40 lg:pb-8">
+    <div className="flex items-center justify-center flex-col pt-8 md:pt-20 lg:gap-10 lg:flex-row lg:pt-40 lg:pb-8">
       <Hero images={images} />
-      <Text showCart={showCart} handleShowCart={handleShowCart} />
+      <Text />
     </div>
   );
 }

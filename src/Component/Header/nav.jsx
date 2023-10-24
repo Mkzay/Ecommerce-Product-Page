@@ -2,13 +2,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import SideBar from "./sideBar";
+import Cart from "./cart.jsx";
 
 export default function Nav() {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
-
   //Function for opening up the Sidebar Menu
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   const openMenu = () => {
     setSidebarOpen(!isSidebarOpen);
+  };
+
+  //Function for opening up the Cart toggle
+  const [isCartVisible, setIsCartVisible] = useState(false);
+  const toggleCart = () => {
+    setIsCartVisible(!isCartVisible);
   };
 
   return (
@@ -20,16 +26,20 @@ export default function Nav() {
         >
           <FontAwesomeIcon icon={faBars} />
         </button>
+        {isCartVisible && <Cart toggleCart={toggleCart} />}
         <img src="./images/logo.svg" />
         <SideBar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
       </div>
       <div className="flex gap-5 lg:gap-8">
-        <button className="text-xl text-Black lg:text-Dark-grayish-blue lg:hover:text-Black">
+        <button
+          onClick={toggleCart}
+          className="text-xl text-Black lg:text-Dark-grayish-blue lg:hover:text-Black"
+        >
           <FontAwesomeIcon icon={faCartShopping} />
         </button>
-        <button className="bg-red-700 w-7 h-7 rounded-full">
+        <button className="flex items-center justify-center bg-White w-8 h-8 rounded-full hover:border-Orange hover:border-4 lg:w-12 lg:h-12">
           <img
-            className="rounded-full w-8 h-8"
+            className="rounded-full w-[1.66rem] h-[1.66rem] lg:w-[2.65rem] lg:h-[2.65rem]"
             src="./images/IMG_2815 Large.jpeg"
           />
         </button>
