@@ -5,7 +5,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import Slider from "./image";
+import Slider from "./image"; //Import the Slider component
 
 export default function Hero({ images }) {
   const imageS = [
@@ -27,10 +27,15 @@ export default function Hero({ images }) {
     setCurrentImageIndex(previousIndex);
   };
 
-  //Function for opening up the Image Slider
-  const [isSliderVisible, setIsSliderVisible] = useState(true);
+  // Function for opening up the Image Slider
+  const [isSliderVisible, setIsSliderVisible] = useState(false);
   const toggleSlider = () => {
     setIsSliderVisible(!isSliderVisible);
+  };
+
+  // Function to change the current image to the clicked thumbnail
+  const changeImage = (index) => {
+    setCurrentImageIndex(index);
   };
 
   return (
@@ -47,11 +52,13 @@ export default function Hero({ images }) {
           src={imageS[currentImageIndex]}
         />
         <button className="hidden lg:block">
-          {isSliderVisible && <Slider toggleSlider={toggleSlider} />}
-          <img
-            className="lg:rounded-xl lg:h-[500px]"
-            src={imageS[currentImageIndex]}
-          />
+          {/* Button to open the Slider */}
+          <button onClick={toggleSlider}>
+            <img
+              className="lg:rounded-xl lg:h-[500px]"
+              src={imageS[currentImageIndex]}
+            />
+          </button>
         </button>
         <button
           onClick={nextImage}
@@ -64,12 +71,25 @@ export default function Hero({ images }) {
         {images.map((image, index) => (
           <img
             key={index}
-            className="rounded-xl w-[100px] h-full hover:border-Orange hover:border-4 hover:opacity-70"
+            className="rounded-xl w-[100px] h-full hover:border-Orange hover:border-4 hover:opacity-70 cursor-pointer"
             src={image}
             alt={`Thumbnail ${index}`}
+            onClick={() => changeImage(index)}
           />
         ))}
       </div>
+
+      {/* Render the Slider component based on isSliderVisible */}
+      {isSliderVisible && (
+        <Slider
+          closeImageSlider={toggleSlider}
+          imageS={imageS}
+          currentImageIndex={currentImageIndex}
+          nextImage={nextImage}
+          previousImage={previousImage}
+          isSliderVisible={isSliderVisible}
+        />
+      )}
     </div>
   );
 }

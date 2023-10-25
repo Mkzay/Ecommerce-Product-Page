@@ -18,7 +18,7 @@ export default function Nav() {
   };
 
   return (
-    <header className="flex items-center justify-between fixed top-0 bg-White w-full py-5 px-4 lg:px-14 lg:border-b lg:w-11/12 z-10">
+    <header className="flex items-center justify-between fixed top-0 bg-White w-full py-5 px-4 lg:px-14 lg:border-b lg:w-11/12 z-10 lg:pb-0">
       <div className="flex justify-center items-center gap-3 lg:flex lg:flex-row lg:gap-16">
         <button
           onClick={openMenu}
