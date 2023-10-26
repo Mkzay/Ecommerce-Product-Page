@@ -61,7 +61,7 @@ export default function Cart({ cartItems, parentComponent }) {
           ))}
 
           {/* Display the Checkout button */}
-          <div className="flex items-center justify-center py-10">
+          <div className="flex items-center justify-center pt-5 pb-10">
             <button className="bg-Orange rounded-lg p-4 w-11/12 text-White font-bold hover:opacity-70">
               Checkout
             </button>
