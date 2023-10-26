@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import SideBar from "./sideBar";
-import Cart from "./cart.jsx";
+import Cart from "../Body/cart";
 
 export default function Nav() {
   //Function for opening up the Sidebar Menu
